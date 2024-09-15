@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang='en'>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="description" content="">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <title>ADM. RESERVAS</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    </head>
+
+    <body class="container mt-5">
+        {% if reservas %}
+        {% for reserva in reservas %}
+        <div class="alert alert-info display-4 text-center"><h3>Ticket n°</h3> <h3>{{reserva.IdReserva | upper}}</h3></div>
+        <!-- Formulario -->
+        <form method='POST'>
+                       
+        </form>
+        
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Valor </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                   
+                    <td>
+                        QR
+                    </td>
+                    <td>
+                        <!--<img src="{% static 'images/qr_code.png' %}" style="max-width: 300px; max-height: 200px;" />-->
+                            <img src="{{reserva.qrreserva.url}}" style="max-width: 300px; max-height: 200px;">
+                    </td>
+                </tr>
+
+                <tr> 
+                    <tr>
+                        <td>Fecha de Reserva:</td>
+                        <td>{{reserva.FechaReserva}}</td> 
+                    </tr>   
+                    <td> Fecha Llegada</td>
+                    <td>{{reserva.FechaLlegada}}</td>   
+                </tr>
+                <tr>
+                    <td> Fecha </td>
+                    <td>{{reserva.FechaSalida}}</td>   
+                </tr>
+                <tr>
+                    <td>Sucursal</td>
+                    <td>{{reserva.IdSucursal.NombreSucursal}}</td>
+                </tr>   
+                <tr>
+                    <td>Pocision</td>
+                    <td>{{reserva.LugarReserva}}</td>
+                </tr>    
+                <tr>
+                    <td>Patente</td>
+                    <td>{{reserva.IdAuto.Patente}}</td>
+                </tr>    
+                <tr>
+                    <td>Costo</td>
+                    <td>{{reserva.Costo}}</td>
+                </tr>             
+                <tr>
+                    <td>Estado</td>
+                    <td>{{reserva.EstadoReservaId.EstadoReservaNombre}}</td>
+                </tr> 
+                {% endfor %}
+            </tbody>
+        </table>
+        <table>
+            <tr>
+                <td>
+                    <a class="btn btn-warning btn-small" href="/main">
+                        <i class="bi bi-chevron-double-left"></i>
+                    </a>
+                </td>
+                <td>
+
+                </td>
+            </tr>
+        </table>
+        {% else %}
+        <div class="alert alert-info">the pdf it generates comes out with
+            No reservations found in the system</div>
+        {% endif %}
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>    
+    </body>
+</html>

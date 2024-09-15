@@ -1,0 +1,102 @@
+from django.db import models
+#agregando aut https://platzi.com/tutoriales/1104-python-2019/1406-creando-registro-de-usuario-e-inicio-de-sesion-con-django/
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+#Using a custom user model when starting a project
+from django.contrib.auth.models import AbstractUser
+#from django.contrib.auth.hashers import make_password
+
+
+class Sucursal(models.Model):
+    IdSucursal=models.CharField(primary_key=True, max_length=20)
+    NombreSucursal=models.CharField(max_length=50)
+    TarifaSucursal=models.IntegerField(default=0)
+    Direccion=models.CharField(max_length=50)
+
+class EstadoReserva(models.Model):
+    
+    EstadoReservaId=models.CharField(primary_key=True, max_length=3)
+    EstadoReservaNombre=models.CharField(max_length=20)
+
+    def __str__(self):
+        return "{}".format(self.EstadoReservaNombre)
+
+#extenderlo al modelo user de django
+
+
+class Usuario(AbstractUser):
+    IdUser=models.CharField(primary_key=True, max_length=20)
+    Rut=models.CharField(max_length=10, unique=True)
+    Telefono=models.CharField(max_length=12)
+    Fecha_Nacimiento=models.DateField()
+    correo=models.CharField(max_length=120, unique=True,default="hello@mail.kl")
+    contrasena=models.CharField(max_length=120, default="password")
+
+    def save(self, *args, **kwargs):
+        self.username = self.Rut  # Asigna Rut a username
+        self.contrasena = self.password  # Copia password a contrasena
+        self.email=self.correo
+        self.password = self.password  # Encripta password
+
+        super().save(*args, **kwargs) 
+        
+    def __str__(self):
+        return self.Rut
+    #def __str__(self):
+    #    return self.correo
+    
+    # def __str__(self):return f"Rut: {self.Rut}, Correo: {self.correo}"
+    #  def __str__(self):
+    #return f"Rut: {self.Rut}, Correo: {self.correo}"
+    
+    
+#usar el modelo de django de usuario y guardar en la base de datos los demas y mismos valores
+class Auto(models.Model):
+
+    IdAuto=models.CharField(primary_key=True, max_length=20)
+    Marca=models.CharField(max_length=10)
+    Modelo=models.CharField(max_length=10)
+    Patente=models.CharField(max_length=10)
+    Vin=models.CharField(max_length=25)
+    IdUser=models.ForeignKey(Usuario,null=True,blank=False, on_delete=models.RESTRICT)
+    
+class Tarjeta(models.Model):
+
+    IdTarjeta=models.CharField(max_length=20)
+    NumeroTarjeta=models.CharField(max_length=20)
+    Nombre=models.CharField(max_length=50, default='0')
+    FechaVencimiento=models.CharField(max_length=5)
+    CVV=models.CharField(max_length=3)
+    IdUser=models.ForeignKey(Usuario,null=True,blank=False, on_delete=models.RESTRICT)
+
+
+class Reserva(models.Model):
+    
+    IdReserva=models.CharField(primary_key=True, max_length=20)
+    CodigoReserva=models.CharField(max_length=20)
+    FechaReserva=models.DateTimeField(auto_now_add=True)
+    FechaLlegada=models.DateField()
+    FechaSalida=models.DateField()
+    LugarReserva=models.DateField()
+    Costo=models.CharField(max_length=10)
+    Penalizacion=models.BooleanField(default=False)
+
+    IdUser=models.ForeignKey(Usuario,null=True,blank=False, on_delete=models.RESTRICT)
+    IdAuto=models.ForeignKey(Auto,null=True,blank=False, on_delete=models.RESTRICT)
+    EstadoReservaId=models.ForeignKey(EstadoReserva,null=True,blank=False, on_delete=models.RESTRICT)
+    IdSucursal=models.ForeignKey(Sucursal,null=True, blank=True, on_delete=models.RESTRICT)
+    IdTarjeta=models.ForeignKey(Tarjeta,null=True, blank=True, on_delete=models.RESTRICT)
+
+
+##    def __str__(self):
+#        return self.Rut.username
+#    
+#@receiver(post_save, sender=User)
+#def crear_usuario_perfil(sender, instance, created, **kwargs):
+#    if created:
+#        Usuario.objects.create(Rut=instance)
+#
+#@receiver(post_save, sender=User)
+#def guardar_usaurio_perfil(sender, instance, **kwargs):
+#    instance.perfil.save()

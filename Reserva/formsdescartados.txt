@@ -1,0 +1,172 @@
+#autos forms
+
+
+
+
+
+
+
+
+
+
+
+
+
+#Sucursales 
+#class sucursalform(forms.ModelForm):
+#    class Meta:
+#        model=Sucursal
+#      fields='__all__'
+#class tarjetasform(forms.ModelForm):
+#    class Meta:
+#        model=Tarjeta
+#        fields='__all__'
+#class autosform(forms.ModelForm):
+#    class Meta:
+#        model=Auto
+#        fields='__all__'#
+#class RegisterAutosform(forms.ModelForm):
+#    class Meta:
+#        model=Auto
+#        fields='__all__'
+#
+#
+#
+#    def save(self, commit=True):
+#        user = super(RegisterForm, self).save(commit=False)
+#        if commit: 
+#            user.save()
+#        extend_user=ExtendUser(
+#            Telefono=self.cleaned_data['Telefono'],
+#            Fecha_Nacimiento=self.cleaned_data['date_birth'],
+#            imageprofile=self.cleaned_data.get('imageprofile'),
+#            accesibility=self.cleaned_data.get('accesibility'),
+#            iduser=user 
+#            )
+#        if commit:
+#            extend_user.save()
+#
+#        return user
+
+# def save(self, commit=True):
+#     #user=User.objects.get(user.id)
+#     #user = User.objects.get(request.user.id) 
+#     #registroauto=super().save(commit=commit)
+#     registroauto = super().save(commit=False)
+#     if not registroauto.IdAuto:
+#         auto_id=str(uuid.uuid4())[:6]
+#         registroauto.IdAuto=auto_id
+#         registroauto.IdUser = self.user
+#     if commit:
+#         registroauto.save()
+#     return registroauto
+
+#    def guardarUsuario_con_extension(self):
+#        user = self.guardarUsuario()  
+#
+#        extend_user = ExtendUser(
+#            Telefono=self.cleaned_data['Telefono'],
+#            Fecha_Nacimiento=self.cleaned_data['date_birth'],
+#            imageprofile=self.cleaned_data.get('imageprofile'),
+#            accesibility=self.cleaned_data.get('accesibility'),
+##            iduser=user )
+ ##       extend_user.save()
+#
+#        return user
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#        exclude=['username','IdUser','date_joined', 'last_login','correo','contrasena','is_superuser','is_staff', 'is_active','groups', 'user_permissions']#
+#        widgets={
+#            #oculta el input del iduser
+#            'IdUser':forms.HiddenInput(),
+#           # 'password':forms.HiddenInput(),
+#            
+#         }
+#    Rut=forms.CharField(label='Rut', required=True, min_length=6, max_length=12, widget=forms.TextInput(attrs={
+#                                   'class': 'form-control',
+#                                   'placeholder': 'RUT'}))
+#    
+#    first_name=forms.CharField(label='Nombre', required=True, min_length=1,max_length=12, widget=forms.TextInput(attrs={
+#                                   'class': 'form-control',
+#                                   'placeholder': 'Nombre'}))
+#    last_name=forms.CharField(label='Apellido', required=True, min_length=1, max_length=25, widget=forms.TextInput(attrs={
+#                                   'class': 'form-control',
+#                                   'placeholder': 'Apellido'}))
+#    Telefono=forms.CharField(label='Telefono', required=True, min_length=9, max_length=12, widget=forms.TextInput(attrs={
+#                                   'class': 'form-control',
+#                                   'placeholder': 'Telefono'}))
+#    email = forms.CharField(label='Correo Electrónico',required=True,
+#                             widget=forms.EmailInput(attrs={
+#                                   'class': 'form-control',
+#                                   'placeholder': 'ejemplo@empresa.cl'
+#                               }))
+#    
+#    Fecha_Nacimiento=forms.DateField(widget=forms.DateInput(attrs={'type':'date'}),label='Fecha Nacimiento')
+#
+#    
+#    def clean_Telefono(self):
+#        telefono = self.cleaned_data.get('Telefono')
+#        if not re.match(r'^\+?\d+$', telefono):
+#            raise forms.ValidationError("El Teléfono solo puede contener números y opcionalmente el símbolo '+' al inicio")
+#        return telefono
+#    
+#
+#    def clean_Fecha_Nacimiento(self):
+#        cleaned_data = super().clean()
+#        birth_date = cleaned_data.get('Fecha_Nacimiento')
+#        today = timezone.now().date()
+#        age = today.year - birth_date.year - ((today.month, today.day) < (birth_date.month, birth_date.day))
+#        if age < 18:
+#            raise forms.ValidationError("Debe ser mayor de edad para registrarse")
+#        return birth_date
+#
+#    #def clean(self):
+#    #    cleaned_data=super().clean()
+#    #    if cleaned_data.get('Password2')!= cleaned_data.get('password'):
+#    #        self.add_error('Password2', 'La contraseña no coincide')
+#
+#    def save(self, commit=True):
+#        registro = super(RegisterForm, self).save(commit=False)
+#        if not registro.IdUser: 
+#            User_id=str(uuid.uuid4())[:8]
+#            registro.IdUser = User_id
+#            registro.correo = registro.correo
+#            datejoined=dateformat.format(timezone.localtime(timezone.now()), 'Y-m-d H:i:s')
+#            registro.date_joined=datejoined
+#        if commit:
+#            registro.save()
+#      
+#        if commit:
+#            registro.save()
+#            subject = 'Registro exitosaO'
+#            message = f"¡Hola {registro.correo}!\nTu registro en SmartParking con Rut {registro.Rut} ha sido exitoso."
+#            from_email =settings.EMAIL_HOST_USER 
+#            to_email = registro.correo
+#
+#            mail = EmailMessage(subject, message, from_email, [to_email])
+#            mail.send()
+ #       return registro
+
+ #class Tarjeta(models.Model):
+#    IdTarjeta=models.CharField(max_length=20)
+#    NumeroTarjeta=models.CharField(max_length=20)
+#    Nombre=models.CharField(max_length=50, default='0')
+#    FechaVencimiento=models.CharField(max_length=5)
+#    CVV=models.CharField(max_length=3)
+#    iduser=models.ForeignKey(User,null=True,blank=False, on_delete=models.RESTRICT)
+

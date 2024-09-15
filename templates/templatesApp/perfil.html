@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang='en'>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <title>SmartParking</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+</head>
+
+<body class="container mt-5">
+  <div class="alert alert-info display-4 text-center">Perfil De Usaurio</div>
+  <nav style="background-color: aliceblue">
+    <ul class="nav justify-content-center">
+      <li class="nav-item">
+        <a class="nav-link" href='/main/'>Menu inicial</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active text-bg-primary p-3" aria-current="page" href="/perfil/">Perfil</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href='/sucursales/'>Sucursales</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/reservas/">Reservas</a><!--dropmenu-->
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href='/tarjetas/'>Tarjetas</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href='/historial/'>Historial</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href='/vehiculos/'>Vehiculos</a>
+      </li>
+      <li>
+        <a class="btn btn-warning btn-small" href="/logout/">
+          <i class="bi bi-box-arrow-right"></i>
+        </a>
+      </li>
+      <!--aria-disabled="true"-->
+    </ul>
+
+  </nav>
+  <BR />
+  <!--<div class="alert alert-info display-4 text-center">
+            {% if user %}
+            
+              <!--<p>Bienvenido  {{user.username}}</p>
+            main de contacto<td>{{user.email}}</td>
+          </div>-->
+  <div class="container text-center text-bg-info p-3">
+    <div class="row">
+      <div class="col-6">
+            <h5>Datos Usaurio</h5>
+        <table class="table table-bordered table-primary">
+          <tbody>
+            <tr>
+            <tr>
+              <td style="text-align: start;">Rut:</td>
+              <td style="text-align: end;">{{user.username}}</td>
+            </tr>
+            <td style="text-align: start;">Nombre:</td>
+            <td style="text-align: end;">{{user.first_name}}</td>
+            </tr>
+            <tr>
+              <td style="text-align: start;"></tdstyle>Apellido:</td>
+              <td style="text-align: end;">{{user.last_name}}</td>
+            </tr>
+            <tr>
+              <td style="text-align: start;">Email:</td>
+              <td style="text-align: end;">{{user.email}}</td>
+            </tr>
+            {% endif %}
+            {% if extenduser %}
+            <tr>
+              <td style="text-align: start;">Telefono</td>
+              <td style="text-align: end;">{{ reserva_extenduser.telefono }}</td>
+            </tr>
+            <tr>
+              <td style="text-align: start;">Fecha Nacimiento:</td>
+              <td style="text-align: end;">{{extenduser.datebirth}}</td>
+            </tr>
+            <tr>
+              <td style="text-align: start;">Accecibilidad:</td>
+              <td style="text-align: end;">
+                {% if extenduser.accesibility %}
+                Sí
+            {% else %}
+                No
+            {% endif %}</td>
+            </tr>
+            {% endif %}
+          </tbody>
+        </table>
+      </div>
+      <div class="col-6">
+       <table class="table">
+        <h5>Foto Usaurio</h5>
+        
+          {% if extenduser %}
+          {% for extenduser in extenduser %}
+          <img src="{{extenduser.imageprofile.url}}" style="max-width: 300px; max-height: 200px;">
+           {% endfor %}
+          {% endif %}
+        
+       </table>
+      </div>
+    </div>
+  </div>
+  <br>
+ 
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>

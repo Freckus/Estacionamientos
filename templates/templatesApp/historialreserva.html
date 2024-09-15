@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <title>SmartParking</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+    />
+  </head>
+
+  <body class="container mt-5">
+    <div class="alert alert-info display-4 text-center">Historial</div>
+    <nav style="background-color: aliceblue">
+      <ul class="nav justify-content-center">
+        <li class="nav-item">
+          <a class="nav-link" href="/main/">Menu inicial</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/perfil/"
+            >Perfil</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/sucursales/">Sucursales</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/reservas/">Reservas</a
+          ><!--dropmenu-->
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/tarjetas/">Tarjetas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-bg-primary p-3" href="/historial/"
+            >Historial</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/vehiculos/">Vehiculos</a>
+        </li>
+        <li>
+          <a class="btn btn-warning btn-small" href="/logout/">
+            <i class="bi bi-box-arrow-right"></i>
+          </a>
+        </li>
+        <!--aria-disabled="true"-->
+      </ul>
+    </nav>
+
+    <div class="container text-center text-bg-info p-3">
+      <div class="row">
+        <div >
+          
+          <h5>Reservas Usaurio</h5>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>N°</th>
+                <th>Fecha reserva</th>
+                <th>Fecha Llegada</th>
+                <th>Fecha Salida</th>
+                <th>Sucursal</th>
+                <th>Lugar</th>
+                <th>Patente</th>
+                <th>Estado</th>
+                <th>Costo</th>
+                <th>QR</th>
+                <th>-----</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% if reservas %} {%for reserva in reservas %}
+              <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{reserva.FechaReserva}}</td>
+                <td>{{reserva.FechaLlegada}}</td>
+                <td>{{reserva.FechaSalida}}</td>
+                <td>{{reserva.IdSucursal.NombreSucursal}}</td>
+                <td>{{reserva.LugarReserva}}</td>
+                <td>{{reserva.IdAuto.Patente|upper}}</td>
+                <td>{{reserva.EstadoReservaId.EstadoReservaNombre}}</td>
+                <td>{{reserva.Costo}}</td>
+                <td>
+                  <img src="{{ reserva.qrreserva.url }}" style="max-width: 100px; max-height: 100px;">
+                </td>
+                <td>
+                  <a class="btn btn-primary btn-small" href="../reserva/{{reserva.IdReserva}}">
+                    <i class="bi bi-eye-fill"></i>
+                </a>
+                </td>
+              </tr>
+
+              {% endfor %}
+              {% endif %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

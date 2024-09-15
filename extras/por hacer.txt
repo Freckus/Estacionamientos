@@ -1,0 +1,2 @@
+1 guarda el usauario i filetra por el ultimo registarado luego guardas el ext user
+2 cambiar el modelo y poner IdAuto en auto (minusculas todas las fk)

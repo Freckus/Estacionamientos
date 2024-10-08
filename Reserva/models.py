@@ -13,7 +13,8 @@ class ExtendUser(models.Model):
     imageprofile=models.ImageField(upload_to='images', default='App/perfil/profile_base.jpg')
     accesibility=models.BooleanField()
     iduser=models.ForeignKey(User,null=True,blank=False, on_delete=models.RESTRICT)
-
+    def __str__(self):
+        return f"ExtendUser {self.iduser.username} - {self.Telefono}"
 
 class Auto(models.Model):
     IdAuto=models.CharField(primary_key=True, max_length=20)

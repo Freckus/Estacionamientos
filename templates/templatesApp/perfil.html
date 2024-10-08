@@ -80,12 +80,14 @@
             {% if extenduser %}
             <tr>
               <td style="text-align: start;">Telefono</td>
-              <td style="text-align: end;">{{ reserva_extenduser.telefono }}</td>
+              {% for extenduser in extenduser %} 
+              <td style="text-align: end;">{{ extenduser.Telefono }}</td>
             </tr>
             <tr>
               <td style="text-align: start;">Fecha Nacimiento:</td>
               <td style="text-align: end;">{{extenduser.datebirth}}</td>
             </tr>
+            {% endfor %}
             <tr>
               <td style="text-align: start;">Accecibilidad:</td>
               <td style="text-align: end;">

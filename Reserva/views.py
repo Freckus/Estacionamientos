@@ -158,9 +158,10 @@ def mainpage(request):
 @login_required  
 def profile(request):
     extenduser = ExtendUser.objects.get(iduser=request.user)
+    print(extenduser)
     data={'extenduser':[extenduser]}
-    return render(request, 'templatesApp/perfil.html',data)
-    #return render(request, 'templatesApp/perfil.html')
+    #return render(request, 'templatesApp/perfil.html',data)
+    return render(request, 'templatesApp/perfil.html',data) 
 
 @login_required  
 def historial(request):
@@ -169,7 +170,6 @@ def historial(request):
     sucursal=Sucursal.objects.all()
     data={'reservas':reservas,'autos':autos,'sucursal':sucursal}
     return render(request, 'templatesApp/historialreserva.html',data)
-
 
 def error(request):
     return render(request, 'templatesApp/sucursales.html')

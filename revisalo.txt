@@ -1,0 +1,147 @@
+
+(smartparking)
+Hogar@Hogar MINGW64 /c/smartparkig/smartparking/SmartParking (master)
+$ py manage.py shell
+Python 3.12.3 (tags/v3.12.3:f6650f9, Apr  9 2024, 14:05:25) [MSC v.1938
+64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+>>> from Reserva.models import ExtendUser
+>>> from django.contrib.auth.models import User
+>>>
+>>> user = User.objects.get(username='4')
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+  File "C:\smartparkig\smartparking\Lib\site-packages\django\db\models\m
+anager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\smartparkig\smartparking\Lib\site-packages\django\db\models\q
+uery.py", line 649, in get
+    raise self.model.DoesNotExist(
+django.contrib.auth.models.User.DoesNotExist: User matching query does n
+ot exist.
+>>> extenduser = ExtendUser.objects.get(iduser=4)
+>>> print(extenduser.telefono)
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'ExtendUser' object has no attribute 'telefono'. Did you
+ mean: 'Telefono'?
+>>> user = User.objects.get(username=4)
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+  File "C:\smartparkig\smartparking\Lib\site-packages\django\db\models\m
+anager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\smartparkig\smartparking\Lib\site-packages\django\db\models\q
+uery.py", line 649, in get
+    raise self.model.DoesNotExist(
+django.contrib.auth.models.User.DoesNotExist: User matching query does n
+ot exist.
+>>> extenduser = ExtendUser.objects.get(iduser=4)
+>>> print(extenduser.telefono)
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'ExtendUser' object has no attribute 'telefono'. Did you
+ mean: 'Telefono'?
+>>> user = User.objects.get(username=4)
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+  File "C:\smartparkig\smartparking\Lib\site-packages\django\db\models\m
+anager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\smartparkig\smartparking\Lib\site-packages\django\db\models\q
+uery.py", line 649, in get
+    raise self.model.DoesNotExist(
+django.contrib.auth.models.User.DoesNotExist: User matching query does n
+ot exist.
+>>>
+>>> print(user)
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+NameError: name 'user' is not defined. Did you mean: 'User'?
+>>> user = User.objects.get(username='4')
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+  File "C:\smartparkig\smartparking\Lib\site-packages\django\db\models\m
+anager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\smartparkig\smartparking\Lib\site-packages\django\db\models\q
+uery.py", line 649, in get
+    raise self.model.DoesNotExist(
+django.contrib.auth.models.User.DoesNotExist: User matching query does n
+ot exist.
+>>> from django.contrib.auth.models import User
+>>> user = User.objects.get(id='4')
+>>> print(user)
+11111222-52
+>>> extenduser = ExtendUser.objects.get(iduser=user)
+>>> print(extenduser)
+ExtendUser object (45eff0a8-cdc9-4989-8)
+>>> print(extenduser.telefono)
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'ExtendUser' object has no attribute 'telefono'. Did you
+ mean: 'Telefono'?
+>>> print(extenduser)
+ExtendUser object (45eff0a8-cdc9-4989-8)
+>>> print(extenduser.idextenuser)
+45eff0a8-cdc9-4989-8
+>>> print(extenduser.userid)
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'ExtendUser' object has no attribute 'userid'
+>>> print(extenduser.iduser_id)
+4
+>>> print(extenduser.telefono)
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'ExtendUser' object has no attribute 'telefono'. Did you
+ mean: 'Telefono'?
+>>> print(extenduser.Telefono)
+945190011
+>>> print(extenduser.DateBirth)
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'ExtendUser' object has no attribute 'DateBirth'. Did yo
+u mean: 'datebirth'?
+>>> print(extenduser.dateBirth)
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'ExtendUser' object has no attribute 'dateBirth'. Did yo
+u mean: 'datebirth'?
+>>> print(extenduser.datebirth)
+2024-09-15
+>>>
+============================
+dejar lo bueno para chatgpt
+============================
+
+(smartparking)
+Hogar@Hogar MINGW64 /c/smartparkig/smartparking/SmartParking (master)
+$ py manage.py shell
+Python 3.12.3 (tags/v3.12.3:f6650f9, Apr  9 2024, 14:05:25) [MSC v.1938 64 bit (AMD64)] on win32
+>>> from django.contrib.auth.models import User
+>>> from Reserva.models import ExtendUser
+>>> user = User.objects.get(id='4')
+>>> print(user)
+11111222-52
+>>> print(user)
+11111222-52
+>>> extenduser = ExtendUser.objects.get(iduser=user)
+>>> print(extenduser)
+ExtendUser object (45eff0a8-cdc9-4989-8)
+>>> print(extenduser.telefono)
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'ExtendUser' object has no attribute 'telefono'. Did you mean: 'Telefono'?
+>>> print(extenduser.Telefono)
+945190011
+>>> print(extenduser.datebirth)
+2024-09-15
+=============================================================================
+*****************************************************************************
+enviar datos por separado ??
